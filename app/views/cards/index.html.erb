@@ -1,0 +1,17 @@
+<h1>Card Search Results</h1>
+
+<% if @cards.present? %>
+  <% @cards.each do |card| %>
+    <div>
+      <h3><%= card['name'] %></h3>
+      <% if card['image_uris'].is_a?(Hash) %>
+        <img src="<%= card['image_uris']['normal'] %>" alt="<%= card['name'] %>">
+      <% else %>
+        <p>No image available</p>
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <p>No cards found.</p>
+<% end %>
+

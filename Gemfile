@@ -10,6 +10,8 @@ gem "bootstrap"
 
 gem "devise"
 
+gem "httparty"
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
