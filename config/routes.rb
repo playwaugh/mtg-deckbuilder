@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :decks
-  resources :cards
-  get '/search', to: 'cards#index', as: 'cards_search'
+  resources :cards, only: [:index]
   devise_for :users
   
   root to: "decks#index"

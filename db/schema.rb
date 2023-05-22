@@ -10,12 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_01_172323) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_17_083408) do
+  create_table "cards", force: :cascade do |t|
+    t.string "name"
+    t.string "mana_cost"
+    t.string "image"
+    t.string "card_type"
+    t.integer "cmc"
+    t.string "colors"
+    t.string "set_name"
+    t.string "rarity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "decks", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "decks_cards", id: false, force: :cascade do |t|
+    t.integer "deck_id"
+    t.integer "card_id"
+    t.index ["card_id"], name: "index_decks_cards_on_card_id"
+    t.index ["deck_id", "card_id"], name: "index_decks_cards_on_deck_id_and_card_id"
+    t.index ["deck_id"], name: "index_decks_cards_on_deck_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -26,7 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_172323) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "username", default: "", null: false
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
